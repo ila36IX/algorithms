@@ -12,8 +12,8 @@
 void swap(size_t size, int *array, size_t f, size_t s)
 {
 	int tmp = *(array + f);
-	static int *real_head = NULL;
-	static size_t size_ = 0;
+	static int *real_head;
+	static size_t size_;
 
 	if (real_head == NULL)
 	{
