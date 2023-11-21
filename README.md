@@ -1,10 +1,6 @@
 # Sorting algorithms & Big O
 ![](https://media.tenor.com/26cJJUxqcPIAAAAd/sorting-algorithm.gif)
 
-# Sorting Algorithms Overview
-
-This README provides a brief overview of several sorting algorithms: Bubble Sort, Quick Sort, Insertion Sort, Selection Sort, and Shell Sort. Each algorithm has its own characteristics, advantages, and use cases.
-
 ## 1. Bubble Sort
 
 Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.
