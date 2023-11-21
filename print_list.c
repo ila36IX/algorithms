@@ -20,21 +20,3 @@ void print_list(const listint_t *list)
 	}
 	printf("\n");
 }
-
-void print_list_rev(const listint_t *list)
-{
-	int i;
-
-	i = 0;
-	while (list->next)
-		list = list->next;
-	while (list)
-	{
-		if (i > 0)
-			printf(", ");
-		printf("%d", list->n);
-		list = list->prev;
-		++i;
-	}
-	printf("\n");
-}
