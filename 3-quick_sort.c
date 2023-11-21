@@ -26,7 +26,7 @@ void _swap(int *a, int *b)
 int partition(int *array, int low, int high)
 {
 	int pivot = array[high];
-	int i = low - 1, j;
+	int i, j;
 	static int *list;
 	static size_t size;
 
@@ -35,18 +35,25 @@ int partition(int *array, int low, int high)
 		list = array;
 		size = high + 1;
 	}
-	for (j = low; j < high; j++)
+	for (j = i = low; j < high; j++)
 	{
-		if (array[j] <= pivot)
+		if (array[j] < pivot)
 		{
+			if (i < j)
+			{
+				_swap(&array[j], &array[i]);
+				print_array(array, size);
+			}
 			i++;
-			_swap(&array[i], &array[j]);
 		}
 	}
+	if (array[i] > pivot)
+	{
+		_swap(&array[i], &array[high]);
+		print_array(array, size);
+	}
 
-	print_array(array, size);
-	_swap(&array[i + 1], &array[high]);
-	return (i + 1);
+	return (i);
 }
 
 /**
@@ -74,5 +81,6 @@ void quick_sort_recursive(int *array, int low, int high)
  */
 void quick_sort(int *array, size_t size)
 {
-	quick_sort_recursive(array, 0, size - 1);
+	if (array && size)
+		quick_sort_recursive(array, 0, size - 1);
 }

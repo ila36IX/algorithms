@@ -29,7 +29,12 @@ void go_back(listint_t **list, listint_t *walk_back)
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *walk = (*list);
+	listint_t *walk;
+
+	if (!list && !(*list))
+		return;
+
+	walk = (*list);
 
 	while (walk)
 	{
