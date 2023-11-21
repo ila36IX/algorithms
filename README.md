@@ -49,7 +49,3 @@ Shell Sort is an optimization over insertion sort that compares elements that ar
 - ⚡️ Best Case: O(n log n)
 - 💥 Worst Case: Depends on the gap sequence used
 - 🔄  Average Case: Depends on the gap sequence used
-
-
-
-
