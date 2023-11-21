@@ -26,7 +26,7 @@ void _swap(int *a, int *b)
 int partition(int *array, int low, int high)
 {
 	int pivot = array[high];
-	int i = low - 1;
+	int i = low - 1, j;
 	static int *list;
 	static size_t size;
 
@@ -35,7 +35,7 @@ int partition(int *array, int low, int high)
 		list = array;
 		size = high + 1;
 	}
-	for (int j = low; j < high; j++)
+	for (j = low; j < high; j++)
 	{
 		if (array[j] <= pivot)
 		{
