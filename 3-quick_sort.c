@@ -1,59 +1,78 @@
 #include "sort.h"
 
 /**
- * swap - to swap to element in array
+ * _swap - swap to integers
  *
- * @size: size of the array
- * @array: The array
- * @f: First element that will be swaped
- * @s: Second element that will be swaped
- * Return: Nothing
+ * @a: pointer to integer
+ * @b: Pointer to integer
  */
-void swap(size_t size, int *array, size_t f, size_t s)
+void _swap(int *a, int *b)
 {
-	int tmp = *(array + f);
-	static int *real_head;
-	static size_t size_;
+	int temp = *a;
 
-	if (real_head == NULL)
-	{
-		real_head = array;
-		size_ = size;
-	}
-
-	*(array + f) = *(array + s);
-	*(array + s) = tmp;
-	print_array(real_head, size_);
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 /**
- * quick_sort - sort elemnt using quick sort algorithm
+ * partition - Choose a pivot and make a sublist
  *
- * @array: The array
+ * @array: List of integers
+ * @low: first index
+ * @high: last inedx
+ * Return: The index of pivot
+ */
+int partition(int *array, int low, int high)
+{
+	int pivot = array[high];
+	int i = low - 1;
+	static int *list;
+	static size_t size;
+
+	if (!list && !size)
+	{
+		list = array;
+		size = high + 1;
+	}
+	for (int j = low; j < high; j++)
+	{
+		if (array[j] <= pivot)
+		{
+			i++;
+			_swap(&array[i], &array[j]);
+		}
+	}
+
+	print_array(array, size);
+	_swap(&array[i + 1], &array[high]);
+	return (i + 1);
+}
+
+/**
+ * quick_sort_recursive - help function to sort
+ *
+ * @low: The last index
+ * @high: the first index
+ * @array: list of integers
+ */
+void quick_sort_recursive(int *array, int low, int high)
+{
+	if (low < high)
+	{
+		int pivot_index = partition(array, low, high);
+
+		quick_sort_recursive(array, low, pivot_index - 1);
+		quick_sort_recursive(array, pivot_index + 1, high);
+	}
+}
+/**
+ * quick_sort - sort array using Quick algorithm
+ *
+ * @array: array of integers
  * @size: Size of the array
- * Return: Nothing
  */
 void quick_sort(int *array, size_t size)
 {
-	size_t i, j = 0;
-	int pivet;
-
-	if (size == 1 || size == 0)
-		return;
-
-	swap(size, array, 0, 0);
-	pivet = *(array + size - 1);
-	for (i = 0; i < size - 1; i++)
-	{
-		if (*(array + i) < pivet)
-			swap(size, array, i, j), j++;
-	}
-
-	for (i = size - 1; i > j; i--)
-		*(array + i) = *(array + i - 1);
-
-	*(array + j) = pivet;
-
-	quick_sort(array, j);
-	quick_sort(array + j + 1, size - j - 1);
+	quick_sort_recursive(array, 0, size - 1);
 }

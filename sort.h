@@ -29,5 +29,6 @@ void go_back(listint_t **list, listint_t *node);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 void swap(size_t size, int *array, size_t f, size_t s);
+void shell_sort(int *array, size_t size);
 
 #endif /* _SORT_H */
