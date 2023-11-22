@@ -31,7 +31,10 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *walk;
 
-	if (!list && !(*list))
+	if (!list)
+		return;
+
+	if (!*list)
 		return;
 
 	walk = (*list);
